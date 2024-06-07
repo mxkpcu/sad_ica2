@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h1>Register</h1>
+<form method="POST" class="form-vertical">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    
+    <label for="phone">Phone (optional):</label>
+    <input type="text" id="phone" name="phone">
+    
+    <label for="captcha">Solve: {{ captcha }}</label>
+    <input type="text" id="captcha" name="captcha" required>
+    
+    <button type="submit">Register</button>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% endblock %}

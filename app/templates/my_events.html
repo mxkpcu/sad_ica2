@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}My Events{% endblock %}
+
+{% block content %}
+<h1>My Events</h1>
+<ul>
+    {% for event in events %}
+    <li class="event-item">
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p>Date: {{ event.date }}</p>
+        <a href="{{ url_for('events.event_participants', event_id=event.id) }}">View Participants</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

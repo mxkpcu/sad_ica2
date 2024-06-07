@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h1>Profile</h1>
+
+<div class="secondary-menu">
+    <a href="{{ url_for('profile.edit_profile') }}">Edit Profile</a>
+    <a href="{{ url_for('profile.delete_profile') }}">Delete Profile</a>
+</div>
+
+<p>Username: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Phone: {{ user.phone }}</p>
+<p>Role: {{ user.role }}</p>
+{% endblock %}

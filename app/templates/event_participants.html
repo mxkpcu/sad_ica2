@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Event Participants{% endblock %}
+
+{% block content %}
+<h1>Event Participants</h1>
+<ul>
+    {% for participant in participants %}
+    <li>
+        <p>Username: {{ participant.username }}</p>
+        <p>Email: {{ participant.email }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block title %}Message{% endblock %}
+
+{% block content %}
+<h1>Message</h1>
+<p>{{ message }}</p>
+{% if token %}
+<p>Confirmation link: <a href="{{ url_for('auth.confirm_email', token=token) }}">{{ url_for('auth.confirm_email', token=token, _external=True) }}</a></p>
+{% endif %}
+{% endblock %}

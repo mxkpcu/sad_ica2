@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome{% if user %}, {{ user.username }}{% endif %}!</h1>
+{% endblock %}

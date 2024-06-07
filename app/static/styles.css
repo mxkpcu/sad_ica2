@@ -1,0 +1,163 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+header a.active {
+    font-weight: bold;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-menu {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.secondary-menu a {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.secondary-menu a:hover {
+    background-color: #0056b3;
+}
+
+.events-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.event-item {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.event-item h2 {
+    margin-top: 0;
+}
+
+.event-actions {
+    margin-top: 10px;
+}
+
+.event-actions a {
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.event-actions a:hover {
+    text-decoration: underline;
+}
+
+.flashes {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.flashes .warning {
+    color: red;
+}
+
+.flashes .success {
+    color: green;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-form label {
+    margin-top: 10px;
+}
+
+.profile-form input,
+.profile-form textarea,
+.profile-form button {
+    margin-top: 5px;
+}
+
+.profile-form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-form button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}
+
+.form-vertical {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-vertical label {
+    margin-top: 10px;
+}
+
+.form-vertical input,
+.form-vertical textarea,
+.form-vertical button {
+    margin-top: 5px;
+}
+
+.form-vertical button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-vertical button:hover {
+    background-color: #0056b3;
+}
