@@ -14,7 +14,7 @@ def profile():
     """
     if 'user_id' in session:
         user_id = session['user_id']
-        user = User.query.get(user_id)
+        user = db.session.get(User, user_id)
         return render_template('profile.html', user=user, active_page='profile')
     return redirect(url_for('auth.login'))
 
@@ -25,7 +25,7 @@ def edit_profile():
     """
     if 'user_id' in session:
         user_id = session['user_id']
-        user = User.query.get(user_id)
+        user = db.session.get(User, user_id)
 
         if request.method == 'POST':
             username = request.form['username']
@@ -60,7 +60,7 @@ def delete_profile():
     """
     if 'user_id' in session:
         user_id = session['user_id']
-        user = User.query.get(user_id)
+        user = db.session.get(User, user_id)
 
         if request.method == 'POST':
             db.session.delete(user)

@@ -1,5 +1,4 @@
 # config.py
-
 class Config:
     SECRET_KEY = 'key'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
@@ -14,3 +13,5 @@ class TestConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///test_database.db'
     WTF_CSRF_ENABLED = False
+    SESSION_TYPE = 'sqlalchemy'
+    SESSION_SQLALCHEMY_TABLE = 'test_sessions'

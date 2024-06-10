@@ -1,28 +1,31 @@
-import sys
-import os
 import pytest
-
-# Add the root directory of the project to the sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from app import create_app, db as _db
-from app.models import User
+from app import create_app
+from app import db
 
 @pytest.fixture(scope='module')
-def test_client():
-    flask_app = create_app('config.TestConfig')  # Use the TestConfig class
-
-    # Create a test client using the Flask application configured for testing
-    with flask_app.test_client() as testing_client:
-        with flask_app.app_context():
-            _db.create_all()  # Create all tables
-        yield testing_client  # this is where the testing happens
+def app():
+    """Create and configure a new app instance for each test."""
+    app = create_app('config.TestConfig')
+    with app.app_context():
+        db.create_all()
+        yield app
+        db.drop_all()
 
 @pytest.fixture(scope='module')
-def init_database():
-    # Initialize the database
-    flask_app = create_app('config.TestConfig')
-    with flask_app.app_context():
-        _db.create_all()
-        yield _db  # this is where the testing happens
-        _db.drop_all()
+def client(app):
+    """A test client for the app."""
+    return app.test_client()
+
+@pytest.fixture(scope='module')
+def init_database(app):
+    """Initialize the database."""
+    with app.app_context():
+        db.reflect()
+        yield db
+        db.drop_all()
+
+@pytest.fixture
+def captcha(client):
+    """Set up the correct CAPTCHA value in the session."""
+    with client.session_transaction() as sess:
+        sess['captcha_answer'] = 0

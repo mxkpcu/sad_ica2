@@ -1,10 +1,9 @@
 from app.models import User, db
+from werkzeug.security import generate_password_hash
 
-def test_register(test_client, init_database):
-    with test_client.session_transaction() as sess:
-        sess['captcha_answer'] = 0  # Set the expected CAPTCHA answer
-
-    response = test_client.post('/register', data=dict(
+def test_register(client, init_database, captcha):
+    """Test user registration."""
+    response = client.post('/register', data=dict(
         username='testuser',
         email='testuser@example.com',
         password='Password123!',
@@ -14,17 +13,19 @@ def test_register(test_client, init_database):
     assert response.status_code == 200
     assert b'A confirmation email has been sent to your email address.' in response.data
 
-def test_login(test_client, init_database):
-    with test_client.session_transaction() as sess:
-        sess['captcha_answer'] = 0  # Set the expected CAPTCHA answer
-
-    # Ensure user is confirmed before testing login
-    user = User.query.filter_by(email='testuser@example.com').first()
-    if user:
+def test_login(client, init_database, captcha):
+    """Test user login."""
+    with client.application.app_context():
+        # Ensure the user exists and is confirmed
+        user = User.query.filter_by(email='testuser@example.com').first()
+        if not user:
+            user = User(username='testuser', email='testuser@example.com', password=generate_password_hash('Password123!'))
+            db.session.add(user)
+            db.session.commit()
         user.email_confirmed = True
         db.session.commit()
 
-    response = test_client.post('/login', data=dict(
+    response = client.post('/login', data=dict(
         email='testuser@example.com',
         password='Password123!',
         captcha='0'
