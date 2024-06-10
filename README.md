@@ -46,6 +46,7 @@ Private Event Portal is a web application built with Flask. It features user aut
 
 5. Initialize the database and make migration:
     ```bash
+    export FLASK_APP=manage.py
     python -m flask db init
     python -m flask db migrate -m "Initial migration."
     python -m flask db upgrade
