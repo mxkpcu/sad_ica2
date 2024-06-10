@@ -44,14 +44,16 @@ Private Event Portal is a web application built with Flask. It features user aut
     MAIL_PASSWORD=your-password
     ```
 
-5. Initialize the database:
+5. Initialize the database and make migration:
     ```bash
-    flask db upgrade
+    python -m flask db init
+    python -m flask db migrate -m "Initial migration."
+    python -m flask db upgrade
     ```
 
 6. Run the application:
     ```bash
-    flask run
+    python -m flask run
     ```
 
 ## Running Tests
